@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    h1,
+    h2 {
+      color: #333;
+      margin-top: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 8px 16px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #555;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    #addMenuButton,
+    #submitRestaurantButton {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    #addMenuButton {
+      margin-top: 10px;
+    }
+
+    .navbar-link {
+      display: inline-block;
+      padding: 10px 16px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .navbar-link:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <% if (user == 'admin') { %>
+  <div>
+    <a href="/index" class="navbar-link" data-nav-link>Home</a>
+    <a href="logout" class="navbar-link" data-nav-link style="float: right;">Log Out</a>
+</div> 
+  <br>
+  <br>
+  <h1 style="text-align: center;">Admin Only</h1>
+  <h2 style="text-align: center;">Restaurant List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Remove</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Menu</th>
+        <th>Table 1</th>
+        <th>Table 2</th>
+        <th>Table 3</th>
+        <th>Table 4</th>
+        <th>Table 5</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%dataList.forEach(data => {%>
+        <tr>
+          <td>
+            <form id="removeForm" action="remove" method="POST" style="display: inline;">
+              <input type="hidden" name="name" value="<%= data.name %>">
+              <button type="submit" class="button" onclick="return confirm('Are you sure you want to remove <%= data.name %>?')">Remove</button>
+            </form>
+          </td>
+          <td><%= data.name %></td>
+          <td><%= data.category %></td>
+          <td><%= data.menu %></td>
+          <td>
+            <% if (!data.table1) { %>
+              <span style="color: red;">Not Available</span>
+          <% } else { %>
+              Available
+          <% } %> 
+          </td>
+          <td>
+            <% if (!data.table2) { %>
+              <span style="color: red;">Not Available</span>
+          <% } else { %>
+              Available
+          <% } %> 
+          </td>
+          <td>
+            <% if (!data.table3) { %>
+              <span style="color: red;">Not Available</span>
+          <% } else { %>
+              Available
+          <% } %> 
+          </td>
+          <td>
+            <% if (!data.table4) { %>
+              <span style="color: red;">Not Available</span>
+          <% } else { %>
+              Available
+          <% } %> 
+          </td>
+          <td>
+            <% if (!data.table5) { %>
+              <span style="color: red;">Not Available</span>
+          <% } else { %>
+              Available
+          <% } %> 
+          </td>
+          <td><a class="button" href="/adminedit/<%= data.name %>">Edit</a></td>
+        </tr>
+      <%})%>
+      </tbody>
+  </table>
+  <h2 style="text-align: center;">Add New Restaurant</h2>
+  <form action="addrestaurant" method="post" style="margin: 0 auto; width: 50%;">
+    <label for="name">Restaurant Name:</label>
+    <input type="text" name="name" placeholder="Name" id="name" required>
+    <br>
+    <label for="description">Restaurant Description:</label>
+    <input type="text" name="description" placeholder="Description" id="description" required>
+    <br>
+    <label for="category">Restaurant Category:</label>
+    <select id="category" name="category" required>
+      <option value="">---Select Category---</option>
+      <option value="Thai">Thai</option>
+      <option value="Western">Western</option>
+      <option value="Mamak">Mamak</option>
+    </select>
+    <br>
+    <div id="menuContainer">
+      <div class="menu-input">
+        <label for="menu">Add Menu:</label>
+        <input type="text" name="menu[]" placeholder="Menu" id="menu" multiple required>
+        <br>
+        <label for="menu">Price:</label>
+        <input type="text" name="price[]" placeholder="Price" id="price" multiple required>
+        <br>
+      </div>
+    </div>
+    <br>
+    <div style="text-align: center;">
+    <button type="button" id="addMenuButton" class="button">Add Another Menu</button>
+    <input type="submit" value="Submit Restaurant" id="submitRestaurantButton" class="button">
+    </div>
+  </form>
+
+  <script>
+    // Get the container for menu inputs
+    var menuContainer = document.getElementById("menuContainer");
+
+    // Get the "Add another menu" button
+    var addMenuButton = document.getElementById("addMenuButton");
+
+    // Add event listener to the button
+    addMenuButton.addEventListener("click", function() {
+        // Create a new menu input field
+        var newMenuInput = document.createElement("div");
+        newMenuInput.classList.add("menu-input");
+        newMenuInput.innerHTML = `
+            <label for="menu" class="menu">Add Another Menu: &nbsp;</label>
+            <input type="text" name="menu[]" placeholder="Menu" id="menu" multiple required>
+            <br>
+            <label for="menu">Price:</label>
+            <input type="text" name="price[]" placeholder="Price" id="price" multiple required>
+            <br>
+        `;
+
+        // Append the new menu input field to the container
+        menuContainer.appendChild(newMenuInput);
+    });
+  </script>
+  <% } else { %>
+    <h1> 404 ERROR YOU ARE NOT AN ADMIN</h1>
+  <% } %>
+</body>
+
+</html>

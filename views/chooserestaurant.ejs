@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foodie - Supper delicious Burger in town!</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Rubik:wght@400;500;600;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-banner-bg.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-bg.jpg">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+    <% if (user != null) { %> 
+        <header class="header" data-header>
+            <div class="container">
+        
+              <h1>
+                <a href="/index" class="logo">Restaurant Reservation<span class="span">. <%= user %></span></a>
+              </h1>
+        
+              <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+        
+                  <li class="nav-item">
+                    <a href="/index" class="navbar-link" data-nav-link>Home</a>
+                  </li>
+        
+                  <li class="nav-item">
+                    <a href="#homesection" class="navbar-link" data-nav-link>Restaurant</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/details" class="navbar-link" data-nav-link>Details</a>
+                  </li>
+                </ul>
+              </nav>
+        
+              
+        
+                <button class="btn btn-hover"><a href="logout">Logout</a></button>
+        
+                <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+                  <span class="line top"></span>
+                  <span class="line middle"></span>
+                  <span class="line bottom"></span>
+                </button>
+              </div>
+        
+            </div>
+          </header>
+    <% } else { %>
+        <header class="header" data-header>
+            <div class="container">
+        
+              <h1>
+                <a href="/index" class="logo">Restaurant Reservation<span class="span">.</span></a>
+              </h1>
+        
+              <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+        
+                  <li class="nav-item">
+                    <a href="/index" class="navbar-link" data-nav-link>Home</a>
+                  </li>
+        
+                  <li class="nav-item">
+                    <a href="#homesection" class="navbar-link" data-nav-link>Restaurant</a>
+                  </li>
+                </ul>
+              </nav>
+        
+              
+        
+                <button class="btn btn-hover"><a href="login">Login</a></button>
+        
+                <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+                  <span class="line top"></span>
+                  <span class="line middle"></span>
+                  <span class="line bottom"></span>
+                </button>
+              </div>
+        
+            </div>
+          </header>
+    <% } %>
+
+  <!-- 
+    - #SEARCH BOX
+  -->
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home" style="background-image: url('./images/hero-bg.jpg')">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="hero-subtitle">Eat Sleep And Welcome <%= user %></p>
+
+            <h2 class="h1 hero-title"><%= category %> Restaurants</h2>
+
+            <p class="hero-text">Full with <%= category %> food</p>
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="./images/hero-banner-bg.png" width="820" height="716" alt="" aria-hidden="true"
+              class="w-100 hero-img-bg">
+
+            <img src="./images/hero-banner.png" width="700" height="637" loading="lazy" alt="Burger"
+              class="w-100 hero-img">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PROMO
+      -->
+
+      <section id = "homesection" class="section section-divider white promo" >
+        <div class="container-restaurant">
+
+          <ul class="promo-list has-scrollbar">
+            <% dataList.forEach(function(data) { %>
+            <li class="promo-item">
+              <div class="promo-card">
+                <h3 class="h3 card-title"><%= data.name %></h3>
+
+                <p class="card-text">
+                  <%= data.description %>
+                </p>
+                
+                <h3 class="h3 card-title">
+                    Current Menus: <br>
+                </h3>
+                <p class="card-text">
+                        <% for (var i = 0; i < data.menu.length; i++) { %>
+                            <%= data.menu[i] %> RM: <%= data.price[i] %><br>
+                        <% } %>
+                </p>
+                <br>
+                <br>
+                <div class="formbutton">
+                  <form action="chooserestaurant" method="post">
+                      <input type="text" name="name" value="<%= data.name %>" readonly style="display: none;">
+                      <input type="submit" value="Reserve <%= data.name %>">
+                  </form>
+              </div>
+              </div>
+            </li>
+            <% }); %>
+          </ul>
+
+        </div>
+      </section>
+    </article>
+  </main>
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

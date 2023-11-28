@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foodie - Supper delicious Burger in town!</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Rubik:wght@400;500;600;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-banner-bg.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-bg.jpg">
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+    <% if (user != null) { %> 
+        <header class="header" data-header>
+            <div class="container">
+        
+              <h1>
+                <a href="/index" class="logo">Restaurant Reservation<span class="span"> . <%= user %></span></a>
+              </h1>
+        
+              <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+        
+                  <li class="nav-item">
+                    <a href="/index" class="navbar-link" data-nav-link>Home</a>
+                  </li>
+        
+                  <li class="nav-item">
+                    <a href="/index#homesection" class="navbar-link" data-nav-link>Restaurant</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/details" class="navbar-link" data-nav-link>Details</a>
+                  </li>
+                </ul>
+              </nav>
+        
+              
+        
+                <button class="btn btn-hover"><a href="logout">Logout</a></button>
+        
+                <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+                  <span class="line top"></span>
+                  <span class="line middle"></span>
+                  <span class="line bottom"></span>
+                </button>
+              </div>
+        
+            </div>
+          </header>
+    <% } else { %>
+        <header class="header" data-header>
+            <div class="container">
+        
+              <h1>
+                <a href="/index" class="logo">Restaurant Reservation<span class="span">.</span></a>
+              </h1>
+        
+              <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+        
+                  <li class="nav-item">
+                    <a href="/index" class="navbar-link" data-nav-link>Home</a>
+                  </li>
+        
+                  
+                </ul>
+              </nav>
+        
+              
+        
+                <button class="btn btn-hover"><a href="login">Login</a></button>
+        
+                <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+                  <span class="line top"></span>
+                  <span class="line middle"></span>
+                  <span class="line bottom"></span>
+                </button>
+              </div>
+        
+            </div>
+          </header>
+    <% } %>
+
+  <!-- 
+    - #SEARCH BOX
+  -->
+  <% if (user != null) { %> 
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero" id="home" style="background-image: url('./images/hero-bg.jpg')">
+        <div class="container">
+          <% dataList.forEach(function(data) { %>
+          <div class="hero-content">
+            <p class="hero-subtitle">Welcome <%= user %></p>
+            <p class="hero-text">You choose to make a reservation at <%= name %>.</p>
+            <div class="signup-form">
+              <h1 style="color: black;">Reservation Form For  <%= name %></h1>
+              <form action="reserve" method="post" >
+                <div class="form-group">
+                  <label for="fullname" class="form-label">Full Name:</label>
+                  <input type="text" name="fullname" id="fullname" placeholder="Name" required>
+                </div>
+    
+                <div class="form-group">
+                  <label for="phone" class="form-label">Phone:</label>
+                  <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="date" class="form-label">Date:</label>
+                  <input type="date" name="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="time" class="form-label">Time:</label>
+                  <input type="time" name="time" id="time" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="table" class="form-label">Choose a Table:</label>
+                  <select id="table" name="table">
+                    <% if (!data.table1) { %>
+                      <option disabled>Table 1 (Not Available)</option>
+                    <% } else { %>
+                      <option value="table1">Table 1</option>
+                    <% } %>
+                    <% if (!data.table2) { %>
+                      <option disabled>Table 2 (Not Available)</option>
+                    <% } else { %>
+                      <option value="table2">Table 2</option>
+                    <% } %>
+                    <% if (!data.table3) { %>
+                      <option disabled>Table 3 (Not Available)</option>
+                    <% } else { %>
+                      <option value="table3">Table 3</option>
+                    <% } %>
+                    <% if (!data.table4) { %>
+                      <option disabled>Table 4 (Not Available)</option>
+                    <% } else { %>
+                      <option value="table4">Table 4</option>
+                    <% } %>
+                    <% if (!data.table5) { %>
+                        <option disabled>Table 5 (Not Available)</option>
+                    <% } else { %>
+                        <option value="table5">Table 5</option>
+                    <% } %>
+                  </select>
+                </div>
+
+                <div class="form-menu">
+                  <label for="menu" class="form-labelmenu">Select Menu:</label>
+                  <div class="form-menus">
+                    <% for (var i = 0; i < data.menu.length; i++) { %>
+                      <input type="checkbox" id="menu<%= i %>" name="menu" value="<%= data.menu[i] %>">
+                      <label for="menu<%= i %>" class="form-label"><%= data.menu[i] %> RM: <%= data.price[i] %></label>
+                    <% } %>
+                  </div>
+                </div>                
+    
+                <div class="form-group">
+                  <input type="submit" value="Reserve" class="login-button">
+                </div>
+              </form>
+            </div>
+          </div>
+          <% }); %>
+          
+
+          <figure class="hero-banner">
+            <img src="./images/hero-banner-bg.png" width="820" height="716" alt="" aria-hidden="true"
+              class="w-100 hero-img-bg">
+
+            <img src="./images/hero-banner.png" width="700" height="637" loading="lazy" alt="Burger"
+              class="w-100 hero-img">
+          </figure>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #PROMO
+      -->
+    </article>
+  </main>
+  <% } else { %>
+        <main>
+          <article>
+      
+            <!-- 
+              - #HERO
+            -->
+      
+            <section class="hero" id="home" style="background-image: url('./images/hero-bg.jpg')">
+              <div class="container">
+      
+                <div class="hero-content">
+      
+                  <p class="hero-subtitle">Welcome Guest</p>
+      
+                  <h2 class="h1 hero-title">PLEASE LOGIN FIRST</h2>
+      
+                  <p class="hero-text">To proceed, login first</p>
+      
+                </div>
+      
+                <figure class="hero-banner">
+                  <img src="./images/hero-banner-bg.png" width="820" height="716" alt="" aria-hidden="true"
+                    class="w-100 hero-img-bg">
+      
+                  <img src="./images/hero-banner.png" width="700" height="637" loading="lazy" alt="Burger"
+                    class="w-100 hero-img">
+                </figure>
+      
+              </div>
+            </section>
+          </article>
+        </main>
+  <% } %>
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.querySelector('[data-menu-toggle-btn]');
+      const navbar = document.querySelector('[data-navbar]');
+
+      toggleBtn.addEventListener('click', function () {
+        navbar.classList.toggle('active');
+      });
+    });
+  </script>
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

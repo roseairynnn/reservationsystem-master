@@ -1,0 +1,199 @@
+[{
+  "_id": {
+    "$oid": "64b17dbb54619c3705ab176d"
+  },
+  "name": "Som Tum Der.",
+  "category": "Thai",
+  "menu": [
+    "Spicy shrimp soup",
+    "Spicy green papaya salad",
+    "Thai-style fried noodles"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "Som Tum Der is a Thai restaurant known for its authentic and flavorful cuisine. They specialize in som tum, a traditional green papaya salad, as well as other popular Thai dishes such as pad Thai, green curry, and tom yum soup. The restaurant offers a vibrant and welcoming atmosphere, making it a great place to enjoy a delicious Thai meal.",
+  "price": [
+    "18.90",
+    "25.90",
+    "15.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b13e7754619c3705ab1763"
+  },
+  "name": "Thai Basil",
+  "category": "Thai",
+  "menu": [
+    "Spicy shrimp soup",
+    "Thai-style fried noodles",
+    "Spicy green papaya salad"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "Thai Basil is a charming restaurant that serves delectable Thai cuisine. They are known for their skilled chefs who create dishes bursting with fresh herbs, spices, and aromatic flavors. From classic favorites like pad see ew and pineapple fried rice to unique specialties like crispy basil duck, Thai Basil offers a diverse menu that caters to various tastes.",
+  "price": [
+    "19.90",
+    "16.90",
+    "27.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b13e8e54619c3705ab1764"
+  },
+  "name": "Bangkok Street Eats",
+  "category": "Thai",
+  "menu": [
+    "Spicy shrimp soup",
+    "Spicy green papaya salad",
+    "Thai-style fried noodles"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": " Inspired by the vibrant street food culture of Bangkok, Bangkok Street Eats is a casual eatery that brings the flavors of Thailand to your plate. They offer an array of affordable and authentic Thai street food dishes, including noodle soups, grilled skewers, crispy fried snacks, and refreshing beverages. This restaurant is perfect for those seeking an immersive culinary experience.",
+  "price": [
+    "17.90",
+    "24.90",
+    "14.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b13f2454619c3705ab1765"
+  },
+  "name": "The Rustic Grill",
+  "category": "Western",
+  "menu": [
+    "French fries",
+    "Chicken chop",
+    "Hamburger"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "The Rustic Grill is a cozy restaurant that focuses on hearty, comfort food with a touch of rustic charm. Their menu features a variety of grilled dishes, such as steaks, burgers, and barbecue specialties. With a warm and inviting ambiance, The Rustic Grill is an ideal spot for casual gatherings and indulging in satisfying grilled meals.",
+  "price": [
+    "10.90",
+    "12.90",
+    "5.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b13f5a54619c3705ab1766"
+  },
+  "name": "The Urban Kitchen",
+  "category": "Western",
+  "menu": [
+    "Chicken chop",
+    "French fries",
+    "Hamburger"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "The Urban Kitchen is a trendy restaurant that offers a fusion of international cuisines and contemporary flavors. Their menu showcases a diverse range of dishes inspired by different culinary traditions, blending ingredients and techniques to create innovative and exciting flavors. From creative appetizers to artfully crafted main courses, The Urban Kitchen aims to provide a unique dining experience.",
+  "price": [
+    "12.90",
+    "4.90",
+    "15.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b13f7f54619c3705ab1767"
+  },
+  "name": "The Savory Bistro",
+  "category": "Western",
+  "menu": [
+    "Hamburger",
+    "Chicken chop",
+    "French fries"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "The Savory Bistro is an upscale dining establishment known for its refined and elegant atmosphere. The restaurant offers a sophisticated menu featuring a mix of classic and contemporary dishes. With an emphasis on quality ingredients and expert culinary techniques, The Savory Bistro strives to provide a memorable dining experience for discerning guests.",
+  "price": [
+    "15.90",
+    "13.90",
+    "7.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b1401f54619c3705ab1768"
+  },
+  "name": "Mamak Village",
+  "category": "Mamak",
+  "menu": [
+    "Nasi Lemak",
+    "Mee Goreng",
+    "Roti Kosong"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "Mamak Village is a popular Malaysian restaurant that brings the vibrant flavors of Malaysia to its patrons. The restaurant offers an extensive menu of authentic Malaysian dishes, including roti canai, nasi lemak, satay, and laksa. With its vibrant decor and friendly ambiance, Mamak Village offers a taste of Malaysia in a casual and inviting setting.",
+  "price": [
+    "2.90",
+    "4.90",
+    "3.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b1403854619c3705ab1769"
+  },
+  "name": "Roti Canai Express",
+  "category": "Mamak",
+  "menu": [
+    "Roti Kosong",
+    "Mee Goreng",
+    "Nasi Lemak"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "Roti Canai Express is a casual eatery specializing in roti canai, a popular Malaysian flatbread served with various flavorful curries and condiments. This restaurant focuses on providing quick and delicious meals, making it a convenient spot for those craving a taste of Malaysia on the go.",
+  "price": [
+    "4.90",
+    "5.90",
+    "2.90"
+  ]
+},{
+  "_id": {
+    "$oid": "64b1405054619c3705ab176a"
+  },
+  "name": "Mamak Corner",
+  "category": "Mamak",
+  "menu": [
+    "Mee Goreng",
+    "Nasi Lemak",
+    "Roti Kosong"
+  ],
+  "table1": true,
+  "table2": true,
+  "table3": true,
+  "table4": true,
+  "table5": true,
+  "description": "Mamak Corner is a cozy corner restaurant that captures the essence of Malaysian street food. The menu features a variety of Malaysian favorites, such as mee goreng, Hainanese chicken rice, and char kway teow. Mamak Corner offers a laid-back and friendly atmosphere, making it a popular spot for casual dining and enjoying authentic Malaysian flavors.",
+  "price": [
+    "2.90",
+    "3.90",
+    "1.90"
+  ]
+}]

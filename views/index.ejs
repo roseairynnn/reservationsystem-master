@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | ResFinder</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- Custom CSS link -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Rubik:wght@400;500;600;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+
+  <!-- Icon link -->
+  <link rel="icon" href="./images/logo.jpg" type="image/svg+xml" sizes="16x16">
+
+  <!-- Include Font Awesome CSS -->
+  <script src="https://kit.fontawesome.com/e3f341baec.js" crossorigin="anonymous"></script>
+
+  <!-- Preload images -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-banner-bg.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-bg.jpg">
+
+  <!-- Responsive Styles -->
+  <style>
+    /* Apply mobile styles here */
+    @media only screen and (max-width: 768px) {
+      body {
+        font-size: 14px; /* Adjust font size for smaller screens */
+      }
+
+      /* Add more styles as needed for mobile devices */
+      /* For example: */
+      .hero-title {
+        font-size: 24px; /* Adjust hero title size for smaller screens */
+      }
+    }
+    
+    .btn-hover {
+      margin: 10px;
+    }
+
+    .btnn {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .btn1 {
+      background-color: rgb(42, 158, 42);
+    }
+
+    .btn2 {
+      background-color: rgb(252, 152, 0);
+    }
+
+    #footer {
+      text-align: center;
+      width: 100%;
+      background-color: rgb(252, 152, 0);
+      color: white;
+    }
+
+    #find{
+        margin: 5px 2px 10px 2px;
+        padding: 5px;
+        width:50px;
+        height:50px;
+        bottom:40px;
+        right:40px;
+      }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- #HEADER -->
+  <% if (user != null) { %> 
+    <header class="header" data-header>
+      <div class="container">
+        <h1>
+          <a href="/index" class="logo">Restaurant Reservation<span class="span">. <%= user %> </span></a>
+        </h1>
+        <nav class="navbar" data-navbar>
+          <ul class="navbar-list">
+            <li class="nav-item">
+              <a href="/index" class="navbar-link" data-nav-link>Home</a>
+            </li>
+            <% if (user == 'admin') { %>
+              <li class="nav-item">
+                <a href="/admin" class="navbar-link" data-nav-link>Admin</a>
+              </li>
+            <% } %>
+            <% if (user != 'admin') { %>
+              <li class="nav-item">
+                <a href="#homesection" class="navbar-link" data-nav-link>Restaurant</a>
+              </li>
+              <li class="nav-item">
+                <a href="/details" class="navbar-link" data-nav-link>Details</a>
+              </li>
+            <% } %>
+          </ul>
+        </nav>
+        <button class="btn btn-hover"><a href="logout">Logout</a></button>
+        <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+          <span class="line top"></span>
+          <span class="line middle"></span>
+          <span class="line bottom"></span>
+        </button>
+      </div>
+    </header>
+  <% } else { %>
+    <header class="header" data-header>
+      <div class="container">
+        <h1>
+          <a href="/index" class="logo">Restaurant Reservation<span class="span">.</span></a>
+        </h1>
+        <nav class="navbar" data-navbar>
+          <ul class="navbar-list">
+            <li class="nav-item">
+              <a href="/index" class="navbar-link" data-nav-link>Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#homesection" class="navbar-link" data-nav-link>Restaurant</a>
+            </li>
+          </ul>
+        </nav>
+        <button class="btn btn-hover"><a href="login">Login</a></button>
+        <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+          <span class="line top"></span>
+          <span class="line middle"></span>
+          <span class="line bottom"></span>
+        </button>
+      </div>
+    </header>
+  <% } %>
+
+  <!-- #SEARCH BOX -->
+
+  <main>
+    <article>
+      <!-- #HERO -->
+      <section class="hero" id="home" style="background-image: url('./images/hero-bg.jpg')">
+        <div class="container">
+          <div class="hero-content">
+            <p class="hero-subtitle">Eat Sleep And Welcome <%= user %></p>
+            <h2 class="h1 hero-title">Supper delicious Burger in town!</h2>
+            <p class="hero-text">Food is any substance consumed to provide nutritional support for an organism.</p>
+          </div>
+          <figure class="hero-banner">
+            <img src="./images/hero-banner-bg.png" width="820" height="716" alt="" aria-hidden="true"
+              class="w-100 hero-img-bg">
+            <img src="./images/hero-banner.png" width="700" height="637" loading="lazy" alt="Burger"
+              class="w-100 hero-img">
+          </figure>
+        </div>
+      </section>
+
+      <!-- #PROMO -->
+      <% if (user != "admin") { %>
+        <section id="homesection" class="section section-divider white promo">
+          <div class="container-restaurant">
+            <ul class="promo-list has-scrollbar">
+              <li class="promo-item">
+                <div class="promo-card">
+                  <h3 class="h3 card-title">Mamak</h3>
+                  <p class="card-text">
+                    Mamak refers to a type of Malaysian cuisine influenced by Indian-Muslim flavors and cooking techniques.
+                  </p>
+                  <div class="formbutton">
+                    <form action="/category" method="post">
+                      <input type="text" name="category" value="Mamak" readonly style="display: none;">
+                      <input type="submit" value="Mamak">
+                    </form>
+                  </div>
+                </div>
+              </li>
+
+              <li class="promo-item">
+                <div class="promo-card">
+                  <h3 class="h3 card-title">Thai Food</h3>
+                  <p class="card-text">
+                    Thai cuisine is renowned for its harmonious balance of flavors, featuring a combination of sweet, sour,
+                    salty, and spicy tastes.
+                  </p>
+                  <div class="formbutton">
+                    <form action="/category" method="post">
+                      <input type="text" name="category" value="Thai" readonly style="display: none;">
+                      <input type="submit" value="Thai">
+                    </form>
+                  </div>
+                </div>
+              </li>
+              <li class="promo-item">
+                <div class="promo-card">
+                  <h3 class="h3 card-title">Western Food</h3>
+                  <p class="card-text">
+                    The Western food category encompasses a variety of culinary styles and dishes originating from Europe and North America.
+                  </p>
+                  <div class="formbutton">
+                    <form action="/category" method="post">
+                      <input type="text" name="category" value="Western" readonly style="display: none;">
+                      <input type="submit" value="Western">
+                    </form>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      <% } %>
+
+      <!-- FIND -->
+      <div style="display: flex; justify-content: flex-end; padding: 0px 8px;">
+        <button type="button" id="find" class="btn btn-primary" style="border-radius: 60%;" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+          <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+        </button>    
+      </div>
+
+    </article>
+  </main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+  <div class="copyright">
+    &copy; Copyright <strong>Restaurant Reservation System</strong>. All Rights Reserved <strong>Luqman & Rose</strong>
+  </div>
+</footer>
+<!-- End Footer -->
+
+
+  <!-- #BACK TO TOP -->
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+  <!-- Custom JS link -->
+  <script src="./assets/js/script.js" defer></script>
+
+  <!-- Ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!-- Toggle Button Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.querySelector('[data-menu-toggle-btn]');
+      const navbar = document.querySelector('[data-navbar]');
+
+      toggleBtn.addEventListener('click', function () {
+        navbar.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+
+</html>
+

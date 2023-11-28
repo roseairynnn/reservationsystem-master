@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | ResFinder</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Rubik:wght@400;500;600;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+
+  <!-- Icon in Tab -->
+  <link rel="icon" href="./images/logo.jpg" type="image/svg+xml" sizes="16x16">
+
+  <!-- Preload Images -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-banner-bg.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./images/hero-bg.jpg">
+
+  <!-- Responsive Styles -->
+  <style>
+    @media only screen and (max-width: 768px) {
+      body {
+        font-size: 14px; /* Adjust font size for smaller screens */
+      }
+
+      /* Additional styles for mobile devices */
+      .hero-title {
+        font-size: 24px; /* Adjust hero title size for smaller screens */
+      }
+    }
+
+    .btn-hover {
+      margin: 10px;
+    }
+
+    #footer {
+      text-align: center;
+      width: 100%;
+      background-color: rgb(252, 152, 0);
+      color: white;
+    }
+
+    /* Style for Hero Section */
+    .hero-content {
+      margin-top: 30px;
+    }
+
+    .header {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 20px;
+      background-image: url(./images/hero-bg.jpg);
+    }
+
+    /* Adjustments for better visibility */
+    .hero-subtitle {
+      margin-bottom: 10px; /* Add margin below the subtitle for spacing */
+    }
+
+    .signup-form {
+      max-width: 400px; /* Limit the form width for better readability */
+      margin: 0 auto; /* Center the form horizontally */
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="container">
+      <h1>
+        <a href="index" class="logo">Restaurant Reservation<span class="span">.</span></a>
+      </h1>
+      <button class="btn btn-hover"><a href="login">Login</a></button>
+    </div>
+  </header>
+
+  <main>
+    <article>
+
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero-content">
+            <p class="hero-subtitle">Sign Up</p>
+
+            <!-- Signup Form -->
+            <form action="/signup" method="post" class="signup-form" onsubmit="return validateForm()">
+              <div class="form-group">
+                <label for="email" class="form-label">Enter Your Email</label>
+                <input type="email" name="email" placeholder="Email" id="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="username" class="form-label">Enter Your Username</label>
+                <input type="text" name="username" placeholder="Username" id="username" required>
+              </div>
+
+              <div class="form-group">
+                <label for="password" class="form-label">Enter Your Password</label>
+                <input type="password" name="password" placeholder="Password" id="password" required>
+              </div>
+
+              <div class="form-group">
+                <label for="password2" class="form-label">Confirm Your Password</label>
+                <input type="password" name="password2" placeholder="Confirm password" id="password2" required>
+              </div>
+
+              <div class="form-group">
+                <input type="submit" value="Sign Up" class="signup-button">
+              </div>
+            </form>
+          </div>
+
+          <!-- Hero Banner Images -->
+          <figure class="hero-banner">
+            <img src="./images/hero-banner-bg.png" width="820" height="716" alt="" aria-hidden="true"
+              class="w-100 hero-img-bg">
+            <img src="./images/hero-banner.png" width="700" height="637" loading="lazy" alt="Burger"
+              class="w-100 hero-img">
+          </figure>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong>Restaurant Reservation System</strong>. All Rights Reserved <strong>Luqman & Rose</strong>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- Back to Top Button -->
+  <script>
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var adminRegex = /admin/i; // Case-insensitive regular expression to match "admin"
+
+      if (adminRegex.test(username)) {
+        alert("Username cannot contain 'admin' or its variations.");
+        return false;
+      }
+
+      // Additional form validation logic can be added here
+
+      return true; // Proceed with form submission if all validation checks pass
+    }
+  </script>
+  <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
+    <ion-icon name="chevron-up"></ion-icon>
+  </a>
+
+  <!-- Custom JS and Ionicon Links -->
+  <script src="./assets/js/script.js" defer></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

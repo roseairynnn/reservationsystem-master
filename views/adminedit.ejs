@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #333;
+      margin-top: 0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    .button {
+      padding: 8px 16px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #555;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    #addMenuButton {
+      margin-top: 10px;
+    }
+
+    .menu-input {
+      margin-bottom: 10px;
+    }
+
+    .navbar-link {
+      display: inline-block;
+      padding: 10px 16px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .navbar-link:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+    <div>
+        <a href="/admin" class="navbar-link" data-nav-link>Back</a>
+    </div>      
+  <br>
+  <br>
+  <h1>Admin</h1>
+  <h2>Edit <%= dataList.name %> Restaurant</h2>
+  <h3>
+    Current Table Status:
+    <ul>
+      <li>
+        Table 1:
+        <% if (!dataList.table1) { %>
+            <span style="color: red;">Not Available</span>
+        <% } else { %>
+        Available
+        <% } %>
+      </li>
+      <li>
+        Table 2:
+        <% if (!dataList.table2) { %>
+            <span style="color: red;">Not Available</span>
+        <% } else { %>
+        Available
+        <% } %>
+      </li>
+      <li>
+        Table 3:
+        <% if (!dataList.table3) { %>
+            <span style="color: red;">Not Available</span>
+        <% } else { %>
+        Available
+        <% } %>
+      </li>
+      <li>
+        Table 4:
+        <% if (!dataList.table4) { %>
+            <span style="color: red;">Not Available</span>
+        <% } else { %>
+        Available
+        <% } %>
+      </li>
+      <li>
+        Table 5:
+        <% if (!dataList.table5) { %>
+            <span style="color: red;">Not Available</span>
+        <% } else { %>
+        Available
+        <% } %>
+      </li>
+    </ul>
+  </h3>
+  <form id="tableStatusForm" action="/changetablestatus/<%= dataList.name %>" method="post">
+    <label for="table1">Change Table 1 Status:</label>
+    <select id="table1" name="table1">
+      <% if (!dataList.table1) { %>
+      <option value="false">Not Available</option>
+      <option value="true">Available</option>
+      <% } else { %>
+      <option value="true">Available</option>
+      <option value="false">Not Available</option>
+      <% } %>
+    </select>
+    <br>
+    <label for="table2">Change Table 2 Status:</label>
+    <select id="table2" name="table2">
+      <% if (!dataList.table2) { %>
+      <option value="false">Not Available</option>
+      <option value="true">Available</option>
+      <% } else { %>
+      <option value="true">Available</option>
+      <option value="false">Not Available</option>
+      <% } %>
+    </select>
+    <br>
+    <label for="table3">Change Table 3 Status:</label>
+    <select id="table3" name="table3">
+      <% if (!dataList.table3) { %>
+      <option value="false">Not Available</option>
+      <option value="true">Available</option>
+      <% } else { %>
+      <option value="true">Available</option>
+      <option value="false">Not Available</option>
+      <% } %>
+    </select>
+    <br>
+    <label for="table4">Change Table 4 Status:</label>
+    <select id="table4" name="table4">
+      <% if (!dataList.table4) { %>
+      <option value="false">Not Available</option>
+      <option value="true">Available</option>
+      <% } else { %>
+      <option value="true">Available</option>
+      <option value="false">Not Available</option>
+      <% } %>
+    </select>
+    <br>
+    <label for="table5">Change Table 5 Status:</label>
+    <select id="table5" name="table5">
+      <% if (!dataList.table5) { %>
+      <option value="false">Not Available</option>
+      <option value="true">Available</option>
+      <% } else { %>
+      <option value="true">Available</option>
+      <option value="false">Not Available</option>
+      <% } %>
+    </select>
+    <br>
+    <input type="submit" value="Apply Change" class="button">
+  </form>
+  <h3>
+    Current Menus:
+    <ul>
+      <% for (var i = 0; i < dataList.menu.length; i++) { %>
+      <li><%= dataList.menu[i] %>(RM:<%= dataList.price[i] %>)</li>
+      <% } %>
+    </ul>
+  </h3>
+  <form action="/addmenu/<%= dataList.name %>" method="post">
+    <div id="menuContainer">
+      <div class="menu-input">
+        <label for="menu">Add New Menu:</label>
+        <input type="text" name="menu[]" placeholder="Menu" id="menu" multiple required>
+        <br>
+        <label for="menu">Price:</label>
+        <input type="text" name="price[]" placeholder="Price" id="price" multiple required>
+        <br>
+      </div>
+    </div>
+
+    <button type="button" id="addMenuButton" class="button">Add Another Menu</button>
+    <input type="submit" value="Submit Menus" class="button">
+  </form>
+
+  <script>
+    // JavaScript code here
+    // Get the container for menu inputs
+    var menuContainer = document.getElementById("menuContainer");
+
+    // Get the "Add another menu" button
+    var addMenuButton = document.getElementById("addMenuButton");
+
+    // Add event listener to the button
+    addMenuButton.addEventListener("click", function() {
+      // Create a new menu input field
+      var newMenuInput = document.createElement("div");
+      newMenuInput.classList.add("menu-input");
+      newMenuInput.innerHTML = `
+        <label for="menu">Add Another Menu:</label>
+        <input type="text" name="menu[]" placeholder="Menu" id="menu" multiple required>
+        <br>
+        <label for="menu">Price:</label>
+        <input type="text" name="price[]" placeholder="Price" id="price" multiple required>
+        <br>
+      `;
+
+      // Append the new menu input field to the container
+      menuContainer.appendChild(newMenuInput);
+    });
+  </script>
+
+</body>
+
+</html>

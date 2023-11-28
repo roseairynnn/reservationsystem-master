@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Rubik:wght@400;500;600;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="image" href="./assets/images/hero-banner.png" media="min-width(768px)">
+    <link rel="preload" as="image" href="./images/hero-banner-bg.png" media="min-width(768px)">
+    <link rel="preload" as="image" href="./images/hero-bg.jpg">
+  </head>
+    <title>payment</title>
+    <body> 
+      <% if (user != null) { %> 
+        <header class="header" data-header>
+            <div class="container">
+        
+              <h1>
+                <a href="/index" class="logo">Restaurant Reservation <span class="span"> . <%= user %></span></a>
+              </h1>
+        
+              <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+        
+                  <li class="nav-item">
+                    <a href="/index" class="navbar-link" data-nav-link>Home</a>
+                  </li>
+        
+                  <li class="nav-item">
+                    <a href="/index#homesection" class="navbar-link" data-nav-link>Restaurant</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/details" class="navbar-link" data-nav-link>Details</a>
+                  </li>
+                </ul>
+              </nav>
+        
+              
+        
+                <button class="btn btn-hover"><a href="logout">Logout</a></button>
+        
+                <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+                  <span class="line top"></span>
+                  <span class="line middle"></span>
+                  <span class="line bottom"></span>
+                </button>
+              </div>
+        
+            </div>
+          </header>
+    <% } else { %>
+        <header class="header" data-header>
+            <div class="container">
+        
+              <h1>
+                <a href="/index" class="logo">Restaurant Reservation<span class="span">.</span></a>
+              </h1>
+        
+              <nav class="navbar" data-navbar>
+                <ul class="navbar-list">
+        
+                  <li class="nav-item">
+                    <a href="/index" class="navbar-link" data-nav-link>Home</a>
+                  </li>
+        
+                  
+                </ul>
+              </nav>
+        
+              
+        
+                <button class="btn btn-hover"><a href="login">Login</a></button>
+        
+                <button class="nav-toggle-btn" aria-label="Toggle Menu" data-menu-toggle-btn>
+                  <span class="line top"></span>
+                  <span class="line middle"></span>
+                  <span class="line bottom"></span>
+                </button>
+              </div>
+        
+            </div>
+          </header>
+    <% } %>
+      <section class="hero" id="home" style="background-image: url('./images/hero-bg.jpg')">
+        <figure class="hero-banner">
+          <img src="./images/hero-banner-bg.png" width="820" height="716" alt="" aria-hidden="true"
+            class="w-100 hero-img-bg">
+
+          <img src="./images/hero-banner.png" width="700" height="637" loading="lazy" alt="Burger"
+            class="w-100 hero-img">
+        </figure>
+        <%
+        var newtotal = 0;
+        total = parseFloat(total) * 100;
+        newtotal = total.toFixed(2);
+        %>
+        
+    <h3>Welcome</h3>
+    <form action="payment" method="POST">
+    <script
+      src="//checkout.stripe.com/v2/checkout.js"
+      class="stripe-button"
+      data-key="<%= key %>"
+      data-amount="<%= newtotal %>"
+      data-currency="myr"
+      data-name="<%= user %>"
+      data-description="Reserve your table"
+      data-locale="auto">
+  </script>
+</form>
+</section>
+</body>
+</html>
