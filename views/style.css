@@ -21,7 +21,7 @@ body {
 
 .signup-form {
   max-width: 400px;
-  margin: 0 auto;
+  margin-bottom: 10px;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -670,7 +670,7 @@ body.active { overflow: hidden; }
   font-size: 35px;
   letter-spacing: 1px;
   margin-block-end: 25px;
-  margin-top: 8rem;
+  margin-top: 5rem;
 }
 
 .hero-title {

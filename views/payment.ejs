@@ -142,12 +142,6 @@
   <% } %>
 
   <!-- Hero Section -->
-  <section class="hero" id="home" style="background-image: url('./images/hero-bg.jpg')">
-    <figure class="hero-banner">
-      <img src="./images/hero-banner-bg.png" width="820" height="716" alt="" aria-hidden="true" class="w-100 hero-img-bg">
-      <img src="./images/hero-banner.png" width="700" height="637" loading="lazy" alt="Burger" class="w-100 hero-img">
-    </figure>
-
     <section class="hero" id="home" style="background-image: url('./images/hero-bg.jpg')">
       <div class="container">
         <% userList.forEach(function(data) { %>
@@ -264,31 +258,32 @@
             <% } %>
           </div>
 
-          <div class="btn-details">
-            <button type="button" id="editReservationButton" class="btn btn-hover"><a href="/index#homesection"><i class="fas fa-edit"></i></a></button>
-            <button type="button" id="proceedPaymentButton" class="btn btn-hover"><a href="/payment"><i class="fas fa-money-check-alt"></i></a></button>
+          <div  class="btn-details">
+           
+            
           </div>
         </div>
         <% }); %>
-    <!-- Payment Form -->
-    <% var newtotal = 0; %>
-    <% if (total) { %>
-      <% total = parseFloat(total) * 100; %>
-      <% newtotal = total.toFixed(2); %>
-    <% } %>
 
-    <form action="payment" method="POST">
-      <script
-        src="//checkout.stripe.com/v2/checkout.js"
-        class="stripe-button"
-        data-key="<%= key %>"
-        data-amount="<%= newtotal %>"
-        data-currency="myr"
-        data-name="<%= user %>"
-        data-description="Reserve your table"
-        data-locale="auto">
-      </script>
-    </form>
-  </section>
+        <!-- Payment Form -->
+        <% var newtotal = 0; %>
+        <% if (total) { %>
+          <% total = parseFloat(total) * 100; %>
+          <% newtotal = total.toFixed(2); %>
+        <% } %>
+
+        <form action="payment" method="POST">
+          <script
+            src="//checkout.stripe.com/v2/checkout.js"
+            class="stripe-button"
+            data-key="<%= key %>"
+            data-amount="<%= newtotal %>"
+            data-currency="myr"
+            data-name="<%= user %>"
+            data-description="Reserve your table"
+            data-locale="auto">
+          </script>
+        </form>
+    </section>
 </body>
 </html>
