@@ -97,6 +97,31 @@ select option {
   cursor: pointer;
 }
 
+/*reservation details*/
+.info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-1 {
+  width: 30%;
+  margin-right: 10px;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+  text-align: left;
+}
+
+.col-2 {
+  margin-top: 2.5px;
+  text-align: left;
+  display: flex;
+  width: 80%;
+}
+
+.row {
+  margin-bottom: 10px; /* Adjust the margin as needed for spacing */
+}
 
 
 :root {
@@ -333,7 +358,7 @@ body.active { overflow: hidden; }
   height: 1px;
   transform: translate(-50%, 51%) scale(var(--scale, 1));
   border-radius: 50%;
-  background-color: var(--rich-black-fogra-29);
+  background-color: rgb(208, 79, 79);
   z-index: -1;
   transition: var(--transition-2);
 }

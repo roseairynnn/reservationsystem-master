@@ -366,7 +366,7 @@ app.post('/reserve', express.urlencoded({ extended: true }), async function(req,
 
         req.session.save(function (err) {
             if (err) { return next(err) }
-            res.redirect('/');
+            res.redirect('/payment');
             
         })
 
